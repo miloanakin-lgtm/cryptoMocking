@@ -35,7 +35,7 @@ button {
     box-shadow: 10px 10px 20px;
     transition: .2s ease all;
 }
-#buyPlace {
+#buyPlace1, #buyPlace2, #buyPlace3 {
     display: flex;
     width: 10vh;
     background-color: rgb(2, 162, 255);

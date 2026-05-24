@@ -1,5 +1,6 @@
-let stock = document.getElementById("stock");
-let buyPlace = document.getElementById("buyPlace");
+/*let stock = document.getElementById("stock");
+let buyPlaceCount = 1;
+let buyPlace = document.getElementById("buyPlace" + buyPlaceCount);
 let stockValue = 0
 let buyPlaceNum = 0;
 let money = 1000;
@@ -23,12 +24,15 @@ function stockChange() {
 
 buyButton.addEventListener("click", function() {
     if (money >= stockValue && !hasStock) {
+        if (buyPlaceCount === 4) {return};
+        buyPlace = document.getElementById("buyPlace" + buyPlaceCount);
         hasStock = true;
         money -= stockValue;
         document.getElementById("money").innerText="Money: " + money;
         buyPlaceNum = stockValue;
         buyPlace.style.height = buyPlaceNum + "vh";
         buyPlace.innerText = buyPlaceNum + " Dollars";
+        buyPlaceCount++;
     };
 });
 sellButton.addEventListener("click", function() {
@@ -38,6 +42,8 @@ sellButton.addEventListener("click", function() {
         buyPlace.style.height = 0 + "vh";
         buyPlace.innerText="";
         document.getElementById("money").innerText="Money: " + money;
+        buyPlaceCount--;
+        buyPlace = document.getElementById("buyPlace" + buyPlaceCount);
     };
 });
 setInterval(() => {
@@ -48,4 +54,71 @@ setInterval(() => {
         }
     }
 }, 1000)
+setInterval(stockChange, 2000);*/
+let stock = document.getElementById("stock");
+let buyPlaceCount = 1; // Keep this global to track the slot number
+let stockValue = 0;
+let buyPlaceNum = 0;
+let money = 1000;
+let hasStock = false;
+
+const buyButton = document.getElementById("buy-btn");
+const sellButton = document.getElementById("sell-btn");
+
+function stockChange() {
+    stockValue = Math.floor(Math.random() * 100);
+    stock.style.height = stockValue + "vh"; 
+    if (stockValue >= 50) {
+        stock.innerText = `${stockValue} Dollars`;
+        stock.style.backgroundColor = "green";
+    } else {
+        stock.innerText = `${stockValue} Dollars`;
+        stock.style.backgroundColor = "red";
+    }
+}
+
+buyButton.addEventListener("click", function() {
+    if (money >= stockValue) {
+        if (buyPlaceCount === 4) return; // Prevent going past your available slots
+        
+        // FIX: Find the element dynamically right now!
+        let currentBuyPlace = document.getElementById("buyPlace" + buyPlaceCount);
+        
+        if (currentBuyPlace) { // Safety check to make sure the HTML element exists
+            hasStock = true;
+            money -= stockValue;
+            document.getElementById("money").innerText = "Money: " + money;
+            buyPlaceNum = stockValue;
+            currentBuyPlace.style.height = buyPlaceNum + "vh";
+            currentBuyPlace.innerText = buyPlaceNum + " Dollars";
+            buyPlaceCount++; // Move to the next slot for the NEXT buy
+            console.log(buyPlaceCount)
+        }
+    }
+});
+
+sellButton.addEventListener("click", function() {
+    console.log(buyPlaceCount)
+    if (hasStock) {
+        // FIX: Step back to the slot that actually holds the stock
+        let currentBuyPlace = document.getElementById("buyPlace" + (buyPlaceCount - 1));
+        
+        if (currentBuyPlace) {
+            money += stockValue;
+            currentBuyPlace.style.height = "0vh";
+            currentBuyPlace.innerText = "";
+            document.getElementById("money").innerText = "Money: " + money;
+            buyPlaceCount--;
+            console.log(buyPlaceCount)
+        }
+    }
+});
+
+setInterval(() => {
+    if (!hasStock && money <= 0) {
+        alert("YOU LOST");
+        location.reload();
+    }
+}, 1000);
+
 setInterval(stockChange, 2000);
