@@ -40,10 +40,4 @@ sellButton.addEventListener("click", function() {
         document.getElementById("money").innerText="Money: " + money;
     };
 });
-if (!hasStock) {
-    if (money <= 0) {
-        alert("YOU LOSE")
-        location.reload()
-    }
-}
 setInterval(stockChange, 2000);

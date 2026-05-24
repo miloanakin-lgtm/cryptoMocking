@@ -6,7 +6,7 @@
     height: 90vh;
     width: 100%;
 }
-.bottom {
+footer {
     display: flex;
     justify-content: center;
 }
