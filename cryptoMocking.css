@@ -33,6 +33,7 @@ button {
     border-radius: 15px;
     border: 2px solid black;
     box-shadow: 10px 10px 20px;
+    transition: .2s ease all;
 }
 #buyPlace {
     display: flex;
@@ -45,6 +46,7 @@ button {
     border-radius: 15px;
     border: 2px solid black;
     box-shadow: 10px 10px 20px;
+    transition: .2s ease all;
 }
 * {
     /*border: 2px solid brown;*/
