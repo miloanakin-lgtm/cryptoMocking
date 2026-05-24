@@ -12,11 +12,8 @@ footer {
 }
 button {
     transition: .2s ease all;
-<<<<<<< HEAD
     width: 100px;
     border-radius: 15px;
-=======
->>>>>>> b480629d27ca7775065146547abd2224eddf42ea
 }
 .stockContainer {
     display: flex;
