@@ -12,6 +12,8 @@ footer {
 }
 button {
     transition: .2s ease all;
+    width: 100px;
+    border-radius: 15px;
 }
 .stockContainer {
     display: flex;
@@ -44,4 +46,28 @@ button {
 body {
     margin: 0;
     overflow: hidden;
+    background-color: rgb(230, 255, 255);
+    background-image: radial-gradient(rgb(90, 250, 250) 25%, transparent 25%);
+    background-size: 20px 20px;
+}
+#money {
+    color: green;
+}
+#sell-btn {
+    background-color: red;
+}
+#buy-btn {
+    background-color: green;
+}
+#sell-btn:hover {
+    background-color: red;
+    width: 110px;
+    filter: brightness(1);
+    cursor: pointer;
+}
+#buy-btn:hover {
+    background-color: green;
+    width: 110px;
+    filter: brightness(2);
+    cursor: pointer;
 }
